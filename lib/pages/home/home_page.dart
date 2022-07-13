@@ -1,3 +1,4 @@
+import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:recipe_app_flutter/utils/app_colors.dart';
 import 'package:recipe_app_flutter/utils/dimensions.dart';
@@ -60,11 +61,26 @@ class _HomePageState extends State<HomePage> {
                   return _buildPageItem(position);
                 }
             ),
-          )
+          ),
+          
+          DotsIndicator(
+            dotsCount: 3,
+            position: _currPageValue,
+            decorator: DotsDecorator(
+              activeColor: AppColors.mainColor,
+              size: const Size.square(9.0),
+              activeSize: const Size(18.0, 9.0),
+              activeShape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0)
+              )
+            ),
+          ),
         ],
       ),
     );
   }
+
+
 
   Widget _buildPageItem(int index) {
     Matrix4 matrix = Matrix4.identity();
