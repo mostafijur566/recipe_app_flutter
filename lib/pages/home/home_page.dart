@@ -19,12 +19,13 @@ class _HomePageState extends State<HomePage> {
   PageController pageController = PageController(viewportFraction: 0.85);
 
   var _currPageValue = 0.0;
-  double _scaleFactor = 0.8;
-  double _height = Dimensions.pageViewContainer;
+  final double _scaleFactor = 0.8;
+  final double _height = Dimensions.pageViewContainer;
 
   @override
   void initState() {
     super.initState();
+    print(Dimensions.screenWidth);
     pageController.addListener(() {
       setState(() {
         _currPageValue = pageController.page!;
@@ -42,17 +43,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bengali Recipe',
+        title: const Text('Bengali Recipe',
           style: TextStyle(
             color: AppColors.mainColor
           ),
         ),
-        elevation: 0,
+        //elevation: 0,
         backgroundColor: Colors.white,
       ),
-      body: Column(
+      body: ListView(
         children: [
           Container(
+            padding: EdgeInsets.only(top: Dimensions.height10),
             height: Dimensions.pageView,
             child: PageView.builder(
               controller: pageController,
@@ -62,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                 }
             ),
           ),
-          
+
           DotsIndicator(
             dotsCount: 3,
             position: _currPageValue,
@@ -75,6 +77,72 @@ class _HomePageState extends State<HomePage> {
               )
             ),
           ),
+
+          SizedBox(height: Dimensions.height30,),
+          Container(
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.only(left: Dimensions.height20),
+            child: BigText(text: 'Popular',),
+          ),
+          SizedBox(height: Dimensions.height10,),
+
+          GridView.builder(
+           physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.only(left: Dimensions.height20, right: Dimensions.height20, bottom: Dimensions.height20),
+              shrinkWrap: true,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                mainAxisExtent: 250
+              ),
+              itemCount: 7,
+              itemBuilder: (context, index){
+                return Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: Dimensions.width150,
+                        height: Dimensions.height100,
+                        //child: Image.asset('assets/images/chicken.jpg', fit: BoxFit.cover,),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(Dimensions.height15),
+                          color: Colors.green,
+                          image: DecorationImage(
+                            image: AssetImage('assets/images/chicken.jpg',),
+                            fit: BoxFit.fill
+                          )
+                        ),
+                      ),
+
+                      SizedBox(height: Dimensions.height30,),
+                      Flexible(
+                          child: BigText(
+                              text: 'Chicken Tandori', size: Dimensions.font18,),
+                      ),
+
+                      SizedBox(height: Dimensions.height10,),
+                      IconAndTextWidget(
+                          icon: Icons.access_time_rounded,
+                          text: 'Cook time 32min',
+                          iconColor: AppColors.iconColor2)
+                    ],
+                  ),
+
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    color: Colors.white,
+                      boxShadow: const [
+                        BoxShadow(
+                            color: Color(0xFFe8e8e8),
+                            blurRadius: 5.0,
+                            offset: Offset(0, 5)),
+                        BoxShadow(color: Colors.white, offset: Offset(-5, 0)),
+                      ]
+                  ),
+                );
+              })
         ],
       ),
     );
@@ -137,7 +205,7 @@ class _HomePageState extends State<HomePage> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(Dimensions.radius20),
                   color: Colors.white,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                         color: Color(0xFFe8e8e8),
                         blurRadius: 5.0,
@@ -159,7 +227,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Row(
                       children: [
-                        Text('Recommended',
+                        const Text('Recommended',
                           style: TextStyle(
                             color: AppColors.mainColor,
                             fontWeight: FontWeight.bold
@@ -170,7 +238,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         IconAndTextWidget(
                             icon: Icons.access_time_rounded,
-                            text: 'Cook Time 32min',
+                            text: '32min',
                             iconColor: AppColors.iconColor2),
                       ],
                     ),
