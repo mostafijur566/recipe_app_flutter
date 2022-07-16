@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:recipe_app_flutter/pages/home/home_page.dart';
-import 'package:recipe_app_flutter/pages/recipe/recommended_recipe_details.dart';
+import 'package:recipe_app_flutter/pages/recipe/details_page.dart';
 import 'package:recipe_app_flutter/utils/app_colors.dart';
 
 void main() {
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
       ),
-      home: const RecommendedRecipeDetails(),
+      home: const HomePage(),
     );
   }
 }

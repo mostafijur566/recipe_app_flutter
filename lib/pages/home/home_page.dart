@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
           Container(
             alignment: Alignment.centerLeft,
             margin: EdgeInsets.only(left: Dimensions.height20),
-            child: BigText(text: 'Popular',),
+            child: BigText(text: 'Popular recipes',),
           ),
           SizedBox(height: Dimensions.height10,),
 
